@@ -39,3 +39,19 @@ services:
       - ./:/opt/www
     ports:
       - 9501:9501
+
+    db:
+      container_name: workshop-hyperf-db
+      image: mysql:8.1
+      command: --default-authentication-plugin=mysql_native_password
+      enviroment:
+        MYSQL_ROOT_PASSWORD: workshop
+        MYSQL_DATABASE: workshop
+      ports:
+        - 3306:3306
+      volumes:
+        - mysql.workshop.dev:/var/lib/mysql
+        
+volumes:
+  mysql.workshop.dev:
+    driver: local
