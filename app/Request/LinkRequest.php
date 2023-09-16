@@ -22,7 +22,10 @@ class LinkRequest extends FormRequest
     public function rules(): array
     {
         return [
-
+            'alias' => 'max:32',
+            'title' => 'required|max:60',
+            'url' => 'required',
+            'expires_in' => '',
         ];
     }
 }
