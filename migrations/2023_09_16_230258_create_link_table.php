@@ -13,6 +13,10 @@ class CreateLinkTable extends Migration
     {
         Schema::create('link', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('alias', 32)->unique()->index();
+            $table->string('title', 60);
+            $table->text('url');
+            $table->date('expires_in');
             $table->datetimes();
         });
     }

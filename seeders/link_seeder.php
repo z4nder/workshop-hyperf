@@ -16,5 +16,15 @@ class LinkSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run() {}
+    public function run() {
+        for ($i =0; $i < 100; $i++) {
+            $link = new \App\Model\Link([
+                'title' => 'Site: ' . $i,
+                'alias' => dechex(time()+$i),
+                'url' => 'https://z4nder.dev',
+                'expires_in' => (new DateTime())->add(new DateInterval('P2D'))->format(DateTimeInterface::W3C),
+            ]);
+            $link->save();
+        }
+    }
 }
