@@ -25,6 +25,13 @@ class LinkSeeder extends Seeder
                 'expires_in' => (new DateTime())->add(new DateInterval('P2D'))->format(DateTimeInterface::W3C),
             ]);
             $link->save();
+            $link->access()->saveMany([
+                new \App\Model\LinkAccess([
+                    'origin' => '192.1.1.1',
+                    'access_data' => 'teste_access_data',
+                    'query_params' => json_encode(['teste' => 'teste']),
+                ])
+            ]);
         }
     }
 }

@@ -16,7 +16,7 @@ class Link extends Model
     /**
      * The table associated with the model.
      */
-    protected ?string $table = 'link';
+    protected ?string $table = 'links';
 
     /**
      * The attributes that are mass assignable.
@@ -27,4 +27,10 @@ class Link extends Model
      * The attributes that should be cast to native types.
      */
     protected array $casts = ['id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+
+
+    public function access()
+    {
+        return $this->hasMany(LinkAccess::class, 'link_id', 'id');
+    }
 }
