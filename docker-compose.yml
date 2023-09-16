@@ -27,3 +27,15 @@ services:
     profiles: ["composer"]
     entrypoint: ["composer"]
     command: validate
+
+  app:
+    container_name: app.workshop-hyperf
+    image: workshop-hyperf
+    depends_on:
+      - image
+    env_file:
+      - .env
+    volumes:
+      - ./:/opt/www
+    ports:
+      - 9501:9501
